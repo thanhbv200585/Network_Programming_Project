@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  james:
+    image: apache/james:memory-latest
+    container_name: james-pop3
+    hostname: james.local
+    command:
+      - --generate-keystore
+    volumes:
+#      - ./sample-configuration/logback.xml:/root/conf/logback.xml
+      - ./sample-configuration/pop3server.xml:/root/conf/pop3server.xml
+      - ./keystore:/root/conf/keystore
+    ports:
+      - "80:80"
+      - "25:25"
+      - "110:110"
+      - "143:143"
+      - "465:465"
+      - "587:587"
+      - "993:993"
+      - "8000:8000"
